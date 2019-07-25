@@ -56,9 +56,21 @@ add_executable(leg_detector
                src/laser_processor.cpp
                src/leg_detector.cpp
                src/calc_leg_features.cpp)
+add_executable(leg_detector2
+               src/laser_processor.cpp
+               src/leg_detector2.cpp
+               src/calc_leg_features.cpp)
+
 
 add_dependencies(leg_detector ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(leg_detector2 ${${PROJECT_NAME}_EXPORTED_TARGETS})
+target_link_libraries(leg_detector2
+   ${catkin_LIBRARIES} ${BFL_LIBRARIES} ${BULLET_LIBRARIES}
+)
 
+install(TARGETS leg_detector2
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 target_link_libraries(leg_detector
    ${catkin_LIBRARIES} ${BFL_LIBRARIES} ${BULLET_LIBRARIES}
 )

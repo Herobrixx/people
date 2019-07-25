@@ -306,9 +306,9 @@ public:
     nh_.param<bool>("use_seeds", use_seeds_, !true);
 
     // advertise topics
-    leg_measurements_pub_ = nh_.advertise<people_msgs::PositionMeasurementArray>("leg_tracker_measurements", 0);
-    people_measurements_pub_ = nh_.advertise<people_msgs::PositionMeasurementArray>("people_tracker_measurements", 0);
-    markers_pub_ = nh_.advertise<visualization_msgs::Marker>("visualization_marker", 20);
+    leg_measurements_pub_ = nh_.advertise<people_msgs::PositionMeasurementArray>("leg_tracker_measurements2", 0);
+    people_measurements_pub_ = nh_.advertise<people_msgs::PositionMeasurementArray>("people_tracker_measurements2", 0);
+    markers_pub_ = nh_.advertise<visualization_msgs::Marker>("visualization_marker2", 20);
 
     if (use_seeds_)
     {
@@ -887,7 +887,7 @@ public:
         people_msgs::PositionMeasurement pos;
         pos.header.stamp = scan->header.stamp;
         pos.header.frame_id = fixed_frame;
-        pos.name = "leg_detector";
+        pos.name = "leg_detector2";
         pos.object_id = (*sf_iter)->id_;
         pos.pos.x = (*sf_iter)->position_[0];
         pos.pos.y = (*sf_iter)->position_[1];
@@ -911,7 +911,7 @@ public:
         visualization_msgs::Marker m;
         m.header.stamp = (*sf_iter)->time_;
         m.header.frame_id = fixed_frame;
-        m.ns = "LEGS";
+        m.ns = "LEGS2";
         m.id = i;
         m.type = m.SPHERE;
         m.pose.position.x = (*sf_iter)->position_[0];
@@ -974,7 +974,7 @@ public:
             visualization_msgs::Marker m;
             m.header.stamp = (*sf_iter)->time_;
             m.header.frame_id = fixed_frame;
-            m.ns = "PEOPLE";
+            m.ns = "PEOPLE2";
             m.id = i;
             m.type = m.SPHERE;
             m.pose.position.x = dx;
@@ -984,7 +984,7 @@ public:
             m.scale.y = .2;
             m.scale.z = .2;
             m.color.a = 1;
-            m.color.g = 1;
+            m.color.b = 1;
             m.lifetime = ros::Duration(0.5);
 
             markers_pub_.publish(m);
@@ -1010,7 +1010,7 @@ public:
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "leg_detector");
+  ros::init(argc, argv, "leg_detector2");
   g_argc = argc;
   g_argv = argv;
   ros::NodeHandle nh;
