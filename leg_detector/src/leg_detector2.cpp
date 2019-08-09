@@ -697,7 +697,7 @@ public:
     ScanProcessor processor(*scan, mask_);
 
     processor.splitConnected(connected_thresh_);
-    processor.removeLessThan(5);
+    processor.removeLessThan(min_points_per_group);
 
     cv::Mat tmp_mat = cv::Mat(1, feat_count_, CV_32FC1);
 
@@ -873,7 +873,25 @@ public:
     int i = 0;
     std::vector<people_msgs::PositionMeasurement> people;
     std::vector<people_msgs::PositionMeasurement> legs;
-
+//---------------------
+       for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
+         sf_iter != saved_features_.end();
+         )
+   {
+        if((*sf_iter)->position_[0] >0.95 || ((*sf_iter)->position_[0] <-0.38 && (*sf_iter)->position_[1]<-0.44))
+        //if((*sf_iter)->position_[0] >3)      
+	{
+        //ROS_INFO("AAAAA");
+        if ((*sf_iter)->other)
+          (*sf_iter)->other->other = NULL;
+        delete(*sf_iter);
+        saved_features_.erase(sf_iter++);
+        //ROS_INFO("AA%d",saved_features_.size());
+      }
+     else
+       sf_iter++;
+    }
+//-------------------------
     for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();
          sf_iter++, i++)
