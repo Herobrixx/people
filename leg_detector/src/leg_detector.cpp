@@ -910,6 +910,30 @@ public:
      else
        sf_iter++;
     }
+//-----------------------------------------------
+double min =10;
+double temp=0;
+ for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
+         sf_iter != saved_features_.end();)
+   {
+ for (std::list<SavedFeature*>::iterator sf_itera = saved_features_.begin();
+         sf_itera != saved_features_.end();sf_itera++){
+           temp= distance(sf_iter,sf_itera);
+        if(temp<min && temp!=0)
+                min = temp;
+}//end for
+     if(min>0.8){
+      if ((*sf_iter)->other)
+          (*sf_iter)->other->other = NULL;
+        delete(*sf_iter);
+        saved_features_.erase(sf_iter++);
+      }//end if
+    else
+       sf_iter++;
+   
+
+    }//end big for
+
 //-------------------------
 
     for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
