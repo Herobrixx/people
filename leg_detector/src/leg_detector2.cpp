@@ -900,10 +900,10 @@ double temp=0;
  for (std::list<SavedFeature*>::iterator sf_itera = saved_features_.begin();
          sf_itera != saved_features_.end();sf_itera++){
            temp= distance(sf_iter,sf_itera);
-        if(temp<min && temp!=0)
+        if(temp<min && temp!=0 && (*sf_itera)->other==NULL)
                 min = temp;
 }//end for
-     if(min>0.8){
+     if(min>0.7){
       if ((*sf_iter)->other)
           (*sf_iter)->other->other = NULL;
         delete(*sf_iter);
@@ -914,6 +914,7 @@ double temp=0;
    
 
     }//end big for
+
 
 //-------------------------
     for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
