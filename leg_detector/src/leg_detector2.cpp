@@ -897,6 +897,7 @@ double temp=0;
  for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();)
    {
+    min = 10;
  for (std::list<SavedFeature*>::iterator sf_itera = saved_features_.begin();
          sf_itera != saved_features_.end();sf_itera++){
            temp= distance(sf_iter,sf_itera);
