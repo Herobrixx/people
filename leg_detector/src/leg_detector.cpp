@@ -897,7 +897,7 @@ public:
          sf_iter != saved_features_.end();
          )
    {
-        if((*sf_iter)->position_[0] >0.95 || ((*sf_iter)->position_[0] <-0.38 && (*sf_iter)->position_[1]<-0.44) ||(*sf_iter)->position_[0] <-1.1 ||(*sf_iter)->position_[1] >1.3)
+        if((*sf_iter)->position_[0] >0.95 || ((*sf_iter)->position_[0] <-0.38 && (*sf_iter)->position_[1]<0.1) ||(*sf_iter)->position_[0] <-1.1 ||(*sf_iter)->position_[1] >1.3)
         //if((*sf_iter)->position_[0] >3)      
 	{
         //ROS_INFO("AAAAA");
@@ -913,6 +913,8 @@ public:
 //-----------------------------------------------
 double min =10;
 double temp=0;
+SavedFeature* tel;
+std::list<SavedFeature*>::iterator tela;
  for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();)
    {
@@ -922,6 +924,7 @@ double temp=0;
            temp= distance(sf_iter,sf_itera);
         if(temp<min && temp!=0 && (*sf_itera)->other==NULL)
                 min = temp;
+                tela = sf_itera;
 }//end for
      if(min>0.7){
       if ((*sf_iter)->other)
@@ -929,13 +932,30 @@ double temp=0;
         delete(*sf_iter);
         saved_features_.erase(sf_iter++);
       }//end if
-    else
-       sf_iter++;
+    else{
+     if(!(*sf_iter)->other){
+       (*sf_iter)->other = (*tela);
+        (*tela)->other = (*sf_iter);
+      }//end if
+     sf_iter++;
+     }//end else
    
 
     }//end big for
 
 //-------------------------
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------
 
     for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();

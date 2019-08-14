@@ -878,7 +878,7 @@ public:
          sf_iter != saved_features_.end();
          )
    {
-        if((*sf_iter)->position_[0] >0.95 || ((*sf_iter)->position_[0] <-0.38 && (*sf_iter)->position_[1]<-0.44) ||(*sf_iter)->position_[0] <-1.1 ||(*sf_iter)->position_[1] >1.3)
+        if((*sf_iter)->position_[0] >0.95 || ((*sf_iter)->position_[0] <-0.38 && (*sf_iter)->position_[1]<0.1) ||(*sf_iter)->position_[0] <-1.1 ||(*sf_iter)->position_[1] >1.3)
         //if((*sf_iter)->position_[0] >3)      
 	{
         //ROS_INFO("AAAAA");
