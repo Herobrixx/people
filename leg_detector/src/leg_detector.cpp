@@ -935,6 +935,33 @@ double temp=0;
 
 
 //-----------------------------------------------------------
+std::list<SavedFeature*>::iterator  pointa;
+for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
+         sf_iter != saved_features_.end();sf_iter++)
+   {
+    min = 10;
+if((*sf_iter)->other==NULL){
+ for (std::list<SavedFeature*>::iterator sf_itera = saved_features_.begin();
+         sf_itera != saved_features_.end();sf_itera++){
+   if((*sf_itera)->other==NULL){
+    temp= distance(sf_iter,sf_itera);
+        if(temp<min && temp!=0){
+                min = temp;
+                pointa = sf_itera;
+         }//end if
+   }//end if
+
+}//end for
+if(min!=10){
+(*sf_iter)->other=*pointa;
+(*sf_iter)->object_id="add";
+(*pointa)->other = *sf_iter;
+(*pointa)->object_id="add";
+}
+}//end if
+}//end for
+
+//----------------------
 
     for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();
