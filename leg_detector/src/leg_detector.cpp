@@ -910,11 +910,9 @@ public:
      else
        sf_iter++;
     }
-//-----------------------------------------------
+//-------------------------
 double min =10;
 double temp=0;
-SavedFeature* tel;
-std::list<SavedFeature*>::iterator tela;
  for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();)
    {
@@ -924,7 +922,6 @@ std::list<SavedFeature*>::iterator tela;
            temp= distance(sf_iter,sf_itera);
         if(temp<min && temp!=0 && (*sf_itera)->other==NULL)
                 min = temp;
-                tela = sf_itera;
 }//end for
      if(min>0.7){
       if ((*sf_iter)->other)
@@ -932,27 +929,9 @@ std::list<SavedFeature*>::iterator tela;
         delete(*sf_iter);
         saved_features_.erase(sf_iter++);
       }//end if
-    else{
-     if(!(*sf_iter)->other){
-       (*sf_iter)->other = (*tela);
-        (*tela)->other = (*sf_iter);
-      }//end if
+    else
      sf_iter++;
-     }//end else
-   
-
     }//end big for
-
-//-------------------------
-
-
-
-
-
-
-
-
-
 
 
 //-----------------------------------------------------------
