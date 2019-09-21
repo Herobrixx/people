@@ -75,7 +75,7 @@ static double max_track_jump_m         = 1.0;
 static double max_meas_jump_m          = 0.75;  // 1.0
 static double leg_pair_separation_m    = 1.0;
 //static std::string fixed_frame         = "/neuronbot/mmp0/odom";
-static std::string fixed_frame         = "/map";
+static std::string fixed_frame         = "/mobile_base_controller/odom";
 
 static double kal_p = 4, kal_q = .002, kal_r = 10;
 static bool use_filter = true;
@@ -874,6 +874,7 @@ public:
     std::vector<people_msgs::PositionMeasurement> people;
     std::vector<people_msgs::PositionMeasurement> legs;
 //---------------------
+/*
        for (std::list<SavedFeature*>::iterator sf_iter = saved_features_.begin();
          sf_iter != saved_features_.end();
          )
@@ -891,6 +892,7 @@ public:
      else
        sf_iter++;
     }
+*/
 //-------------------------
 double min =10;
 double temp=0;
