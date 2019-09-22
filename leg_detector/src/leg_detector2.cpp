@@ -906,7 +906,7 @@ double temp=0;
         if(temp<min && temp!=0 && (*sf_itera)->other==NULL)
                 min = temp;
 }//end for
-     if(min>0.7){
+     if(min>0.5){
       if ((*sf_iter)->other)
           (*sf_iter)->other->other = NULL;
         delete(*sf_iter);
@@ -1054,7 +1054,7 @@ if(min!=10){
             m.scale.y = .2;
             m.scale.z = .2;
             m.color.a = 1;
-            m.color.b = 1;
+            m.color.g = 1;
             m.lifetime = ros::Duration(0.5);
 
             markers_pub_.publish(m);
